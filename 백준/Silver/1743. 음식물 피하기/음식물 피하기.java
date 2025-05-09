@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int[][] map;
+    static boolean[][] map;
     static boolean[][] visited;
     static int dx[]= {-1,1,0,0};
 	static int dy[]= {0,0,-1,1};
@@ -15,21 +15,20 @@ public class Main {
         
         N = sc.nextInt();
         M = sc.nextInt();
-        map = new int[N][M];
+        map = new boolean[N][M];
         visited = new boolean[N][M];
         int Num = sc.nextInt();
         for(int i = 0; i< Num ;i++){
             int r = sc.nextInt();
             int c = sc.nextInt();
-            map[r-1][c-1] = 1;
+            map[r-1][c-1] = true;
         }
         
             for(int i = 0; i< N; i++){
                 for(int j = 0; j< M; j++){
-                    if(map[i][j] == 1&& !visited[i][j]){
-                    cnt=0;
+                    if(map[i][j] && !visited[i][j]){
+                    cnt = 0;
                     bfs(i,j);
-                   // System.out.println(cnt);
                     max = Math.max(max, cnt);          
                  }
             }
@@ -52,7 +51,7 @@ public class Main {
 				int xx = temp.numX +dx[k];
 				int yy = temp.numY +dy[k];
 				if(xx<0 || yy<0 || xx>=N || yy>=M)continue;
-				if(!visited[xx][yy] && map[xx][yy] == 1) {
+				if(!visited[xx][yy] && map[xx][yy]) {
 					q.add(new Edge(xx, yy));
 					visited[xx][yy]=true;
 					cnt++;
