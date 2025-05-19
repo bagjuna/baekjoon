@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -46,7 +45,7 @@ public class Main {
     }
 
     static void bfs() {
-        Queue<Node> q = new LinkedList<>();
+        Queue<Node> q = new ArrayDeque<>();
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
