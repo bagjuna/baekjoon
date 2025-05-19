@@ -14,7 +14,10 @@ public class Main {
             int clip = curr.clip;
             int value = curr.value;
   
-            if(value == N && cnt < minCnt) minCnt = cnt;
+            if(value == N && cnt < minCnt)  {
+                System.out.println(cnt);
+                return;
+            }
             
             if(cnt < minCnt && !visited[clip][value]){
                 if(value+clip < 2000)
@@ -26,7 +29,7 @@ public class Main {
                 visited[clip][value] = true;
             }
         }
-        System.out.println(minCnt);
+  
     }
     
     static class Emj{
