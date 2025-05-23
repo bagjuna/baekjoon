@@ -1,0 +1,43 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[][] maps) {
+        // bfs 최단거리 구하기
+        // 시작점 예약 (0,0 거리 1)
+        int answer = 0;
+        int n = maps.length;
+        int m = maps[0].length;
+        int[] dr = {1,-1,0,0};
+        int[] dc = {0,0,1,-1};
+        
+        Queue<int[]> queue = new ArrayDeque<>();
+        boolean[][] visited = new boolean[n][m];
+       
+        queue.offer(new int[]{0,0,1});
+        visited[0][0] = true;
+
+        // 시작점 예약 (0,0 거리 0)
+        while(!queue.isEmpty()){
+            // 현재 노드 방문
+            int[] curr = queue.poll();
+            int r = curr[0], c = curr[1], dist = curr[2];
+            // if 도착지 도달하면 return dist;
+            if(r==n-1 && c == m-1) return dist;
+            // 다음 노드 예약
+            for(int i = 0; i<4; i++){
+                int nr = r + dr[i], nc = c + dc[i];
+                if(nr >= 0 && nr < n && nc>= 0 && nc < m && maps[nr][nc] ==1) {
+                    if(!visited[nr][nc]){
+                        queue.offer(new int[]{nr,nc,dist+1});
+                        visited[nr][nc] = true;
+                     
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        return -1;
+    }
+}
