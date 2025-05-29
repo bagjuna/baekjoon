@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         // 1. 기본 입력
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
@@ -51,7 +50,6 @@ public class Main {
             if (p == null) {
                 System.out.println(-1);
                 return;
-
             }
 
             // 2. 승객 태우러 이동
