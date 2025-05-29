@@ -2,11 +2,10 @@
 import java.util.*;
 class Solution {
     public int solution(String begin, String target, String[] words) {
-        // bfs로 최단 거리 구하기
-        // 시작점 예약 ("hit")
+
         Queue<Word> q = new ArrayDeque<>();
         HashSet<String> visited = new HashSet<>();
-        q.offer(new Word(begin, 0));
+        q.add(new Word(begin, 0));
         
         while(!q.isEmpty()){
             Word curr = q.poll();
@@ -14,26 +13,17 @@ class Solution {
             // if 현재 노드 == target: return count;
             if(curr.word.equals(target)) return curr.count;
 
-            // 다음 노드 방문
-            for(String next :words){
+
+            for(int i = 0; i< words.length; i++){
+                String next = words[i];
                 if(getDiffCount(curr.word, next) == 1){
                     if(!visited.contains(next)){
-                        q.offer(new Word(next, curr.count + 1));
+                        q.offer(new Word(next,curr.count+1));
                         visited.add(next);
-                    }
                     
+                    }
                 }
             }
-//             for(int i = 0; i< words.length; i++){
-//                 String next = words[i];
-//                 if(getDiffCount(curr.word,next) == 1){
-//                     if(!visited.contains(next)){
-//                         q.offer(new Word(next,curr.count+1));
-//                         visited.add(next);
-                    
-//                     }
-//                 }
-//             }
         }
         return 0;
     }
