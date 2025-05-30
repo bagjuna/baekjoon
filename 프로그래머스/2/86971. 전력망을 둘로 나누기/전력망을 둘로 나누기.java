@@ -5,9 +5,9 @@ class Solution {
         N = n;
         int minValue = Integer.MAX_VALUE;
         for(int i = 0; i< wires.length; i++){
-            HashSet<Integer>[] graph = new HashSet[n + 1];
+            List<Integer>[] graph = new ArrayList[n + 1];
             for(int j = 0; j< n + 1 ;j++){
-                graph[j] = new HashSet<>();
+                graph[j] = new ArrayList<>();
             }
             
             for(int j =0 ;j <wires.length;j++){
@@ -26,7 +26,7 @@ class Solution {
         return minValue;
     }
     
-     static int bfs(HashSet<Integer>[] graph){
+     static int bfs(List<Integer>[] graph){
             Queue<Integer> q = new LinkedList<>();
             q.add(1);
             int cnt = 1;
