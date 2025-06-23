@@ -4,12 +4,9 @@ import java.util.*;
 public class Main {
     static int N, M;
     // 부메랑 방향 (중심 기준)
-    static int[][][] blumings = {
-            {{0, 0}, {1, 0}, {0, 1}},   // 아래 + 오른쪽
-            {{0, 0}, {0, 1}, {-1, 0}},  // 오른쪽 + 위
-            {{0, 0}, {-1, 0}, {0, -1}}, // 위 + 왼쪽
-            {{0, 0}, {0, -1}, {1, 0}}   // 왼쪽 + 아래
-    };
+    static int[] dx = {0, 1, 0, -1, 0}; // 아래, 오른쪽, 위, 왼쪽
+    static int[] dy = {1, 0, -1, 0, 1}; // 아래, 오른쪽, 위, 왼쪽
+
     static int[][] map;
     static boolean[][] visited;
     static int max = 0;
@@ -43,20 +40,19 @@ public class Main {
             return;
         }
 
+        int cx = x;
+        int cy = y;
 
         if (!visited[x][y]) {
-            for (int[][] boom : blumings) {
-                int cx = x + boom[0][0];
-                int cy = y + boom[0][1];
-                int ax = x + boom[1][0];
-                int ay = y + boom[1][1];
-                int bx = x + boom[2][0];
-                int by = y + boom[2][1];
+            for (int i = 0; i < 4; i++) {
+
+                int ax = x + dx[i];
+                int ay = y + dy[i];
+                int bx = x + dx[i+1];
+                int by = y + dy[i+1];
 
 
                 if (valid(cx, cy) || valid(ax, ay) || valid(bx, by)) continue;
-
-
                 if (visited[cx][cy] || visited[ax][ay] || visited[bx][by]) continue;
 
 
