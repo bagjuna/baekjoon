@@ -44,14 +44,18 @@ class Solution {
     
     String intToStr(int s) {
         String sec = String.valueOf(s % 60);
-        if (sec.length() == 1) sec = "0" + sec;
+        if(sec.length() == 1) sec = "0" + sec;
         s /= 60;
+        
         String minute = String.valueOf(s % 60);
-        if (minute.length() == 1) minute = "0" + minute;
+        if(minute.length() == 1) minute = "0" + minute;
         s /= 60;
+        
+        
         String hour = String.valueOf(s);
         if (hour.length() == 1) hour = "0" + hour;
         return hour + ":" + minute + ":" + sec;
+        
     }
     
 }
