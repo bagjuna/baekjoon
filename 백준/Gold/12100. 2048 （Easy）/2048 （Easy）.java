@@ -44,8 +44,8 @@ public class Main {
 
 		dfs(depth + 1);
 
-		for(int j=1;j<=n;++j) {
-			for(int k=1;k<=n;++k) {
+		for(int j=1;j<=n;j++) {
+			for(int k=1;k<=n;k++) {
 				board[j][k] = newBoard[j][k];
 			}
 		}
@@ -59,8 +59,8 @@ public class Main {
 	switch(num) {
 		// left
 		case 0:
-			for(int i=1;i<=n;++i) {
-				for(int j=1;j<=n;++j) {
+			for(int i=1;i<=n;i++) {
+				for(int j=1;j<=n;j++) {
 					if(board[i][j] != 0) {
 						q.add(board[i][j]);
 					}
@@ -70,8 +70,7 @@ public class Main {
 
 				while(!q.isEmpty()) {
 					int data = q.poll();
-
-
+                    
 					if(board[i][idx] == 0) {
 						board[i][idx] = data;
 					} else if(board[i][idx] == data) {
@@ -87,8 +86,8 @@ public class Main {
 
 		// right
 		case 1:
-			for(int i=1;i<=n;++i) {
-				for(int j=n;j>=1;--j) {
+			for(int i=1;i<=n;i++) {
+				for(int j=n;j>=1;j--) {
 					if(board[i][j] != 0) {
 						q.add(board[i][j]);
 					}
@@ -114,8 +113,8 @@ public class Main {
 
 		// up
 		case 2:
-			for(int j=1;j<=n;++j) {
-				for(int i=1;i<=n;++i) {
+			for(int j=1;j<=n;j++) {
+				for(int i=1;i<=n;i++) {
 					if(board[i][j] != 0) {
 						q.add(board[i][j]);
 					}
@@ -141,8 +140,8 @@ public class Main {
 
 		// down
 		case 3:
-			for(int j=1;j<=n;++j) {
-				for(int i=n;i>=1;--i) {
+			for(int j=1;j<=n;j++) {
+				for(int i=n;i>=1;i--) {
 					if(board[i][j] != 0) {
 						q.add(board[i][j]);
 					}
