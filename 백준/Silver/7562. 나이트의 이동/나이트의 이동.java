@@ -5,7 +5,6 @@ public class Main {
     static int dy[] = {1,2,2,1,-2,-1,-2,-1 };
     static Node start;
     static Node end;
-    static int max;
     static int K;
     static boolean[][] visited;
     
@@ -14,16 +13,13 @@ public class Main {
         
         int N = sc.nextInt();
         
-        
         for(int i = 0; i< N; i++){
             K = sc.nextInt();
             int[][] arr = new int[K][K];
             visited = new boolean[K][K];
             start = new Node(sc.nextInt(), sc.nextInt(), 0);
             end = new Node(sc.nextInt(), sc.nextInt(), 0);
-            max = Integer.MAX_VALUE;
             bfs(start);
-            System.out.println(max);
         }
         
     }
@@ -35,11 +31,8 @@ public class Main {
         while(!q.isEmpty()){
             Node curr = q.poll();
             if(curr.x == end.x && curr.y == end.y){
-                max = curr.cnt;
+                System.out.println(curr.cnt);
                 return;
-            }
-            if(curr.cnt > max){
-                continue;    
             }
             
             for(int i = 0 ; i < 8; i++){
@@ -52,7 +45,7 @@ public class Main {
                     }
                 }
                 
-                }
+            }
         }
         
         
