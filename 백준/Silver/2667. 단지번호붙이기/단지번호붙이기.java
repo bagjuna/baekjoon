@@ -1,68 +1,62 @@
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
+import java.io.*;
 
-/**
- *
- */
 public class Main {
-    static int[][] arr;
     static boolean[][] visited;
-    static int[] dx = {0, 0, -1, 1};
-    static int[] dy = {-1, 1, 0, 0};
-    static List<Integer> result;
-    static int cnt, N;
-
+    static int[][] graph;
+    static int[] dx = {-1,0,0,1}; 
+    static int[] dy = {0,-1,1,0};   
+    static int N;
+    static int countPerDanji;
+    
     public static void main(String[] args) throws IOException {
+        // 0. 입력 및 초기화
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-        result = new ArrayList<>();
-        arr = new int[N][N];
+        
+        graph = new int[N][N];
         visited = new boolean[N][N];
-
-        for (int i = 0; i < N; i++) {
-            String str = br.readLine();
-            for (int j = 0; j < N; j++) {
-                arr[i][j] = str.charAt(j) - '0';
+        for(int i = 0; i < N; i++){
+            String s = br.readLine();
+            for(int j = 0; j < N; j++){
+                graph[i][j] = s.charAt(j) - '0';
             }
         }
-
-        cnt = 1;
-        for (int x = 0; x < N; x++) {
-            for (int y = 0; y < N; y++) {
-                if (arr[x][y] == 1 && !visited[x][y]) {
-                    dfs(x, y);
-                    result.add(cnt);
-                    cnt = 1;
-
+        // 1. (0,0) 부터 (N,N) 까지 돌면서 dfs    
+        ArrayList<Integer> countList = new ArrayList<>();
+        for(int i = 0; i < N; i++){
+            for (int j = 0; j < N; j++){
+                if(graph[i][j] == 1 && !visited[i][j]){
+                    countPerDanji = 0;
+                    dfs(i, j);
+                    countList.add(countPerDanji);
                 }
             }
+        
+            
         }
-
-
-        Collections.sort(result);
-        System.out.println(result.size());
-
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
+        
+        System.out.println(countList.size());
+        Collections.sort(countList);
+        for(int temp: countList){
+            System.out.println(temp);
         }
-
-
     }
-
-    public static void dfs(int x, int y) {
-        visited[x][y] = true;
-
-        for (int i = 0; i < 4; i++) {
-            int nx = dx[i] + x;
-            int ny = dy[i] + y;
-
-            if (nx >= 0 && ny >= 0 && nx < N && ny < N && !visited[nx][ny] && arr[nx][ny] == 1) {
-                cnt++;
-                dfs(nx, ny);
+    
+    static void dfs(int y, int x){
+        visited[y][x] = true;
+        countPerDanji++;
+        
+        for(int i = 0; i < 4 ; i++){
+            int newY = y + dy[i];
+            int newX = x + dx[i];
+            if(valid(newX, newY) && !visited[newY][newX] && graph[newY][newX] == 1){
+                dfs(newY, newX);
             }
         }
+    }
+    
+    static boolean valid(int x, int y){
+        return x >= 0 && x < N && y >= 0 && y < N;
     }
 }
