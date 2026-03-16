@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Main {
@@ -22,23 +23,22 @@ public class Main {
     static void dfs(int currNum) {
         // 4. 종료 조건: 현재 깊이가 M과 같으면 수열 완성
         if (currNum == M) {
-            // 5. 정답 출력
-            for (int i : arr) {
+            for(int i : arr) {
                 sb.append(i).append(" ");
             }
             sb.append("\n");
             return;
         }
-
-        // 3. 1부터 N까지 탐색
+        // 5. 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열 만들기
         for (int i = 1; i <= N; i++) {
             if (!visited[i]) {
-                visited[i] = true;
-                arr[currNum] = i;
-                dfs(currNum + 1);
-                visited[i] = false;
+                visited[i] = true;  // 방문 처리
+                arr[currNum] = i;   // 현재 수열 위치에 숫자 저장
+                dfs(currNum + 1);   // 다음 깊이로 이동
+                visited[i] = false; // 백트래킹: 방문 해제
             }
         }
     }
 }
+
 
