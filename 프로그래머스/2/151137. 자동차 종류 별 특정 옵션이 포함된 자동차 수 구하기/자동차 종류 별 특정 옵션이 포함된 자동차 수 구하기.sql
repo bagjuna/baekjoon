@@ -1,0 +1,6 @@
+-- 코드를 입력하세요
+SELECT CAR_TYPE, count(*) AS  CARS
+from CAR_RENTAL_COMPANY_CAR 
+where OPTIONS like '%시트%'
+GROUP BY CAR_TYPE
+ORDER BY CAR_TYPE;
